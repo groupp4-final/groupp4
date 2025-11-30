@@ -1,9 +1,32 @@
-#map {
-  height: 600px;
-  width: 100%;
-  margin: auto;
-}
-body {
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 0;
+}
+
+#header {
+  background-color: #31a354;
+  text-align: center;
+  padding: 5px;
+  height: 60px;
+}
+
+/* Sidebar */
+#sidebar {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 320px;
+  bottom: 0;
+  background-color: #e5f5f9;
+  padding: 10px;
+}
+
+
+#map {
+  position: absolute;
+  top: 70px;
+  left: 320px;
+  right: 0;
+  bottom: 0;
+
 }
