@@ -11,28 +11,20 @@
 <body>
   <div id="header">
     <h1>Texas Nationally Protected Lands</h1></div>
+
   <div id="body-container">
     <div id="sidebar">
       <h2>Additional Information</h2>
         <p>There is 14 nationally protected areas in Texas including....</p>
+
+        <label>Buffer Radius: <span id="radiusValue">5</span> km</label>
+        <input type="range" min="1" max="25" value="5" id="bufferSlider">
     </div>
   <div id="map"></div>
 </div>
   <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
-  <script src="map.js"></script>
-
-  <script type="module">
-  import { npsPolygons } from './polygons.js';
-
-  Polygons.forEach(site => {
-    const polygon = L.polygon(site.coords, {
-      color: "red",
-      weight: 2,
-      fillOpacity: 1
-    }).addTo(mymap);
-
-    polygon.bindPopup(site.name);
-  });
-</script>
+  <script src="basemap.js"></script>
+  <script src="map2.js"></script>
 
 </body>
+</html>
