@@ -1,12 +1,4 @@
-import { addBasemaps } from "./basemaps.js";
-
-// Create the map
-const map = L.map("map").setView([31.0, -99.0], 6);
-
-// Add basemaps
-addBasemaps(map);
-
-// NPS locations with coordinates and URLs
+// Parks data
 const parks = [
   { name: "Guadalupe Mountains NP", lat: 31.912, lng: -104.881, url: "https://www.nps.gov/gumo/index.htm" },
   { name: "Big Bend NP", lat: 29.249, lng: -103.250, url: "https://www.nps.gov/bibe/index.htm" },
@@ -24,40 +16,42 @@ const parks = [
   { name: "Palo Alto Battlefield NHP", lat: 26.016, lng: -97.479, url: "https://www.nps.gov/paal/index.htm" }
 ];
 
-// Function to add park marker and buffer
-function addPark(lat, lng, name, url, bufferKm = 5){
-  // Convert km to meters
-  const radiusMeters = bufferKm * 1000;
+// Store buffer circles
+const bufferCircles = [];
 
-  // Add marker
-  const marker = L.marker([lat, lng]).addTo(map)
+// Function to add marker + buffer
+function addPark(lat, lng, name, url, bufferKm){
+  const radius = bufferKm * 1000; // km to meters
+  L.marker([lat, lng]).addTo(map)
     .bindPopup(`<strong>${name}</strong><br><a href="${url}" target="_blank">Website</a>`);
+  const circle = L.circle([lat, lng], {
+    color:"blue",
+    fillColor:"blue",
+    fillOpacity:0.1,
+    radius
+  }).bindPopup(`<strong>${name} Buffer</strong><br>Radius: ${bufferKm} km`)
+    .addTo(map);
+  bufferCircles.push(circle);
+}
 
-  // Add buffer circle
-  const buffer = L.circle([lat, lng], {
-    color: "blue",
-    fillColor: "blue",
-    fillOpacity: 0.1,
-    radius: radiusMeters
+// Initial 5 km buffer
+parks.forEach(p => addPark(p.lat, p.lng, p.name, p.url, 5));
+
+// Slider functionality
+const slider = document.getElementById("bufferSlider");
+const radiusLabel = document.getElementById("radiusValue");
+
+slider.addEventListener("input", function(){
+  const radiusKm = parseInt(this.value);
+  radiusLabel.textContent = radiusKm;
+  bufferCircles.forEach(circle => circle.setRadius(radiusKm * 1000));
+});
+npsPolygons.forEach(site => {
+  const polygon = L.polygon(site.coords, {
+    color: "red",
+    weight: 2,
+    fillOpacity: 1
   }).addTo(map);
 
-  buffer.bindPopup(`<strong>${name} Buffer</strong><br>Radius: ${bufferKm} km`);
-}
-
-// Example: Add all parks with default 5 km buffer
-parks.forEach(park => {
-  addPark(park.lat, park.lng, park.name, park.url, 5); // default 5 km
+  polygon.bindPopup(site.name);
 });
-
-// Optional: make buffer size user-controlled
-function setCustomBuffers(bufferKm){
-  map.eachLayer(layer => {
-    if(layer instanceof L.Circle){
-      layer.setRadius(bufferKm * 1000); // update radius in meters
-    }
-  });
-}
-
-// Example: change all buffers to 10 km
-// setCustomBuffers(10);
-
