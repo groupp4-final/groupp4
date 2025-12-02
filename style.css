@@ -31,3 +31,9 @@ html, body {
   bottom: 0;
 
 }
+
+#slider-container {
+       padding: 10px;
+        background: #f4f4f4;
+         text-align: center; }
+

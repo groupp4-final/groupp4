@@ -20,4 +20,19 @@
 </div>
   <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
   <script src="map.js"></script>
+
+  <script type="module">
+  import { npsPolygons } from './polygons.js';
+
+  Polygons.forEach(site => {
+    const polygon = L.polygon(site.coords, {
+      color: "red",
+      weight: 2,
+      fillOpacity: 1
+    }).addTo(mymap);
+
+    polygon.bindPopup(site.name);
+  });
+</script>
+
 </body>
