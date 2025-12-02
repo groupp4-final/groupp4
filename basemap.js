@@ -1,6 +1,4 @@
-// Create the map centered on Texas
 const map = L.map("map").setView([31.0, -99.0], 6);
-
 // Basemaps
 const basemaps = {
   "OpenStreetMap": L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }),
@@ -12,7 +10,7 @@ const basemaps = {
 };
 
 // Add default basemap
-basemaps["OpenStreetMap"].addTo(mymap);
+basemaps["OpenStreetMap"].addTo(map);
 
 // Add control box to map
-L.control.layers(basemaps, null, { collapsed: false }).addTo(mymap);
+L.control.layers(basemaps, null, { collapsed: false }).addTo(map);
