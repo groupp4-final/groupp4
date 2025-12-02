@@ -20,4 +20,18 @@
 </div>
   <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
   <script src="map.js"></script>
+  <script type="module">
+  import { sites } from "./polygons.js";
+
+  for (const key in sites) {
+    const poly = L.geoJSON(sites[key], {
+      style: {
+        color: "red",
+        weight: 2,
+        fillOpacity: 0.1
+      }
+    }).addTo(map);
+  }
+</script>
+
 </body>
