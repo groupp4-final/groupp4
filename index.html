@@ -15,30 +15,25 @@
   <div id="navbar">
       <a href="index.html">Home</a>
       <a href="aboutus.html">About Us</a>
-  </div>
-    <div id="searchContainer" style="
-       width: 100%; 
-       padding: 10px; 
-       background: #f4f4f4; 
-        text-align: center;
-      ">
-    <input 
-      type="text" 
-      id="parkSearch" 
-      placeholder="Search for a park..." 
-      style="width: 250px; padding: 6px; font-size: 16px;"
-    >
-    <button id="searchBtn" style="padding: 6px 10px;">Search</button>
 </div>
 
   <div id="body-container">
     <div id="sidebar">
       <h2>Additional Information</h2>
         <p>There is 14 nationally protected areas in Texas including....</p>
-
         <label>Buffer Radius: <span id="radiusValue">5</span> km</label>
         <input type="range" min="1" max="100" value="5" id="bufferSlider">
     </div>
+    <input 
+    type="text" 
+    id="parkSearch" 
+    placeholder="Search for a park..." 
+    style="position:absolute; top:10px; right:10px; z-index:1000; padding:6px; width:200px;">
+  <div id="searchResults" 
+     style="position:absolute; top:40px; right:10px; z-index:1000; background:white; border:1px solid #ccc; width:200px; display:none;">
+  </div>
+
+
   <div id="map"></div>
 </div>
   <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
