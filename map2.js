@@ -55,3 +55,49 @@ npsPolygons.forEach(site => {
 
   polygon.bindPopup(site.name);
 });
+
+// Store all markers in a lookup list for searching
+const parkMarkers = [
+  { name: "Big Bend National Park", marker: bigbendNPark },
+  { name: "Amistad National Recreation Area", marker: amistadNRArea },
+  { name: "Alibates Flint Quarries National Monument", marker: alibatesFlintNM },
+  { name: "Big Thicket National Preserve", marker: bigthicketNP },
+  { name: "Chamizal National Memorial", marker: chamizalNM },
+  { name: "Fort Davis National Historic Site", marker: fortdavisNHS },
+  { name: "Guadalupe Mountains National Park", marker: guadalupeMtnNP },
+  { name: "Lake Meredith National Recreation Area", marker: lakemeredithNRA },
+  { name: "Lyndon B. Johnson National Historic Park", marker: lyndonBJohnsonNHP },
+  { name: "Padre Island National Seashore", marker: padreislandNS },
+  { name: "Palo Alto Battlefield National Historic Park", marker: paloaltobattleNHP },
+  { name: "Rio Grande Wild and Scenic River", marker: riograndeWSR },
+  { name: "San Antonio Missions National Historic Park", marker: saMissionsNHP },
+  { name: "Waco Mammoth National Monument", marker: wacoMammothNM }
+];
+
+// Search function
+function searchPark() {
+  const input = document.getElementById("parkSearch").value.toLowerCase();
+
+  let found = false;
+
+  parkMarkers.forEach(p => {
+    if (p.name.toLowerCase().includes(input)) {
+      map.setView(p.marker.getLatLng(), 10);
+      p.marker.openPopup();
+      found = true;
+    }
+  });
+
+  if (!found) {
+    alert("No park found with that name.");
+  }
+}
+
+// Trigger search when button clicked
+document.getElementById("searchBtn").addEventListener("click", searchPark);
+
+// Also let user press Enter to search
+document.getElementById("parkSearch").addEventListener("keypress", function(e){
+  if (e.key === "Enter") searchPark();
+});
+
