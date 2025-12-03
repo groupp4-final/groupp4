@@ -91,16 +91,23 @@ resultsBox.appendChild(div);
 });
 
 
-fetch("[https://raw.githubusercontent.com/groupp4-final/groupp4/main/Texas_County_Boundaries_-2028607862104916578.geojson](https://raw.githubusercontent.com/groupp4-final/groupp4/main/Texas_County_Boundaries_-2028607862104916578.geojson)")
-.then(res => res.json())
-.then(data => {
-L.geoJSON(data, {
-style: { color: "#333", weight: 1, fillColor: "#ccc", fillOpacity: 0.3 },
-onEachFeature: (feature, layer) => {
-const name = feature.properties.NAME || feature.properties.County || "Unknown County";
-layer.bindPopup(`<strong>County:</strong> ${name}`);
-}
-}).addTo(map);
-})
-.catch(err => console.error("Failed to load counties GeoJSON:", err));
+fetch("https://raw.githubusercontent.com/groupp4-final/groupp4/main/Texas_County_Boundaries_-2028607862104916578.geojson")
+  .then(response => response.json())
+  .then(data => {
+    const countiesLayer = L.geoJSON(data, {
+      style: {
+        color: "#333",
+        weight: 1,
+        fillColor: "#cccccc",
+        fillOpacity: 0.3
+      },
+      onEachFeature: (feature, layer) => {
+        const name = feature.properties.NAME || feature.properties.County || "Unknown County";
+        layer.bindPopup(`<strong>County:</strong> ${name}`);
+      }
+    }).addTo(map);
 
+    // Optionally add to layer control:
+    // L.control.layers(null, { "Texas Counties": countiesLayer }).addTo(map);
+  })
+  .catch(err => console.error("Failed to load counties GeoJSON:", err));
