@@ -123,7 +123,7 @@ searchInput.addEventListener("input", function () {
 
 
 //gets the geoJSON county boundary from github
-fetch("https://raw.githubusercontent.com/groupp4-final/groupp4/main/Texas_County_Boundaries_-2028607862104916578.geojson")
+fetch("https://raw.githubusercontent.com/groupp4-final/groupp4/main/data/Texas_County_Boundaries_-2028607862104916578.geojson")
 //turns into javascript
   .then(response => response.json())
   .then(data => {
