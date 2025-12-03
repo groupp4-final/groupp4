@@ -18,8 +18,8 @@ const parks = [
 { name: "Lake Meredith NRA", lat: 35.643, lng: -101.586, url: "[https://www.nps.gov/lamr/index.htm](https://www.nps.gov/lamr/index.htm)",  },
 { name: "Big Thicket NP", lat: 30.458, lng: -94.387, url: "[https://www.nps.gov/bith/index.htm](https://www.nps.gov/bith/index.htm)",  },
 { name: "Padre Island NS", lat: 27.085, lng: -97.384, url: "[https://www.nps.gov/pais/index.htm](https://www.nps.gov/pais/index.htm)", },
-{ name: "Palo Alto Battlefield NHP", lat: 26.016, lng: -97.479, url: "[https://www.nps.gov/paal/index.htm](https://www.nps.gov/paal/index.htm)",} 
-]; 
+{ name: "Palo Alto Battlefield NHP", lat: 26.016, lng: -97.479, url: "[https://www.nps.gov/paal/index.htm](https://www.nps.gov/paal/index.htm)",}
+];
 
 function addPark(park, bufferKm = 5) {
 
