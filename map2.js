@@ -49,6 +49,74 @@ slider.addEventListener("input", function(){
   radiusLabel.textContent = radiusKm;
   bufferCircles.forEach(circle => circle.setRadius(radiusKm * 1000));
 });
+// ------------------------------
+// SEARCH QUERY FUNCTIONALITY
+// ------------------------------
+const searchInput = document.getElementById("parkSearch");
+const resultsBox = document.getElementById("searchResults");
+
+// Save marker references
+const parkMarkers = {};
+
+parks.forEach(p => {
+  const marker = L.marker([p.lat, p.lng]).addTo(map)
+    .bindPopup(`<strong>${p.name}</strong><br><a href="${p.url}" target="_blank">Website</a>`);
+
+  // store markers for search/zoom use
+  parkMarkers[p.name] = marker;
+});
+
+// Search event
+searchInput.addEventListener("input", function () {
+  const text = this.value.toLowerCase();
+  resultsBox.innerHTML = "";
+  
+  if (text.length === 0) {
+    resultsBox.style.display = "none";
+    return;
+  }
+
+  // Find matches
+  const matches = parks.filter(p => p.name.toLowerCase().includes(text));
+
+  if (matches.length === 0) {
+    resultsBox.style.display = "none";
+    return;
+  }
+
+  // Show results
+  resultsBox.style.display = "block";
+  matches.forEach(m => {
+    const item = document.createElement("div");
+    item.textContent = m.name;
+    item.style.padding = "5px";
+    item.style.cursor = "pointer";
+
+    // Zoom to park on click
+    item.addEventListener("click", () => {
+      const marker = parkMarkers[m.name];
+      map.setView([m.lat, m.lng], 11);
+      marker.openPopup();
+      resultsBox.style.display = "none";
+      searchInput.value = "";
+    });
+
+    resultsBox.appendChild(item);
+  });
+});
+npsPolygons.forEach(site => {
+  const polygon = L.polygon(site.coords, {
+    color: "red",
+    weight: 2,
+    fillOpacity: 1
+  }).addTo(map);
+
+  polygon.bindPopup(site.name);
+});
+
+
+
+
 
 //npsPolygons.forEach(site => {
 //  const polygon = L.polygon(site.coords, {
