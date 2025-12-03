@@ -25,7 +25,7 @@
         Lack of visits for some is intentional to preserve the areas, but for others it is creating a lack of finances for new projects. The Purpose of this website is to inform 
         people on the closest parks to them and provide resources to learn more.
 </h3></p>
-        <label>Buffer Radius: <span id="radiusValue">5</span> km</label>
+        <label><h2>Buffer Radius: </h2><span id="radiusValue">5</span> km</label>
         <input type="range" min="1" max="100" value="5" id="bufferSlider">
     <hr>
       <div id="query">
@@ -63,6 +63,14 @@
 
   <script src="basemap.js"></script>
   <script src="map2.js"></script>
+
+  <footer style="background:#222; color:#ccc; text-align:center; padding:12px; margin-top:20px;">
+    © <span id="year"></span> Emerson, Steph, Abbie — All Rights Reserved
+</footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
