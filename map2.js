@@ -138,139 +138,26 @@ slider.addEventListener("input", function(){
   bufferCircles.forEach(circle => circle.setRadius(radiusKm * 1000));
 });
 
-const searchInput = document.getElementById("parkSearch");
-const resultsBox = document.getElementById("searchResults");
-
-
-const parkMarkers = {};
-
-parks.forEach(p => {
-  const marker = L.marker([p.lat, p.lng]).addTo(map)
-    .bindPopup(`
-      <strong>${p.name}</strong><br>
-      <img src="${p.img}" style="width:200px; border-radius:6px; margin:5px 0;"><br>
-      <a href="${p.url}" target="_blank">Website</a>
-    `);
-
-  parkMarkers[p.name] = marker;
-});
-
-
-searchInput.addEventListener("input", function () {
-  const text = this.value.toLowerCase();
-  resultsBox.innerHTML = "";
-  
-  if (text.length === 0) {
-    resultsBox.style.display = "none";
-    return;
-  }
-
-
-  const matches = parks.filter(p => p.name.toLowerCase().includes(text));
-
-  if (matches.length === 0) {
-    resultsBox.style.display = "none";
-    return;
-  }
-
-  // Show results
-  resultsBox.style.display = "block";
-  matches.forEach(m => {
-    const item = document.createElement("div");
-    item.textContent = m.name;
-    item.style.padding = "5px";
-    item.style.cursor = "pointer";
-
-    // Zoom to park on click
-    item.addEventListener("click", () => {
-      const marker = parkMarkers[m.name];
-      map.setView([m.lat, m.lng], 11);
-      marker.openPopup();
-      resultsBox.style.display = "none";
-      searchInput.value = "";
-    });
-
-    resultsBox.appendChild(item);
-  });
-});
-npsPolygons.forEach(site => {
-  const polygon = L.polygon(site.coords, {
-    color: "red",
-    weight: 2,
-    fillOpacity: 1
-  }).addTo(map);
-
-  polygon.bindPopup(site.name);
-});
 
 
 
-
-
-//npsPolygons.forEach(site => {
-//  const polygon = L.polygon(site.coords, {
-//    color: "red",
-//    weight: 2,
-//    fillOpacity: 1
-//  }).addTo(map);
-
-//  polygon.bindPopup(site.name);
-//});
-
-
-
-fetch("https://raw.githubusercontent.com/groupp4-final/groupp4/main/TPWD_StateParksBoundary.geojson")
-
+fetch("https://raw.githubusercontent.com/groupp4-final/groupp4/main/Texas_County_Boundaries_-2028607862104916578.geojson")
   .then(response => response.json())
   .then(data => {
-
-
-    function parkStyle(feature) {
-      return {
-        color: "#1e90ff",
-        weight: 2,
-        fillColor: "#87cefa",
-        fillOpacity: 0.35
-      };
-    }
-
-    function highlightFeature(e) {
-      var layer = e.target;
-      layer.setStyle({
-        weight: 3,
-        color: "#000",
-        fillOpacity: 0.5
-      });
-    }
-
-    function resetHighlight(e) {
-      parksLayer.resetStyle(e.target);
-    }
-
-
-    function onEachPark(feature, layer) {
-      layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight
-      });
-
-      let name = feature.properties.PARK_NAME ||
-                 feature.properties.NAME ||
-                 "Unnamed Park";
-
-      layer.bindPopup(`<strong>${name}</strong>`);
-    }
-
-
-    parksLayer = L.geoJSON(data, {
-      style: parkStyle,
-      onEachFeature: onEachPark
+    const countiesLayer = L.geoJSON(data, {
+      style: {
+        color: "#333",
+        weight: 1,
+        fillColor: "#cccccc",
+        fillOpacity: 0.3
+      },
+      onEachFeature: (feature, layer) => {
+        const name = feature.properties.NAME || feature.properties.County || "Unknown County";
+        layer.bindPopup(`<strong>County:</strong> ${name}`);
+      }
     }).addTo(map);
 
-
-    L.control.layers(null, {
-      "Texas State Parks (Boundaries)": parksLayer
-    }).addTo(map);
-
+    // Optionally add to layer control:
+    // L.control.layers(null, { "Texas Counties": countiesLayer }).addTo(map);
   })
-  .catch(err => console.error("Failed to load TPWD State Parks Boundary GeoJSON:", err));
+  .catch(err => console.error("Failed to load counties GeoJSON:", err));
