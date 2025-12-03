@@ -12,7 +12,7 @@ html, body {
 #header {
   background-color: #addd8e;
   text-align: center;
-  padding: 4px 0;  
+  padding: 4px 0;
   color: #004d2c;
   font-size: 16px;
   font-weight: bold;
@@ -38,9 +38,9 @@ html, body {
 
 
 #body-container {
-  flex: 1;                
-  display: flex;           
-  overflow: hidden;        
+  flex: 1;
+  display: flex;
+  overflow: hidden;
 }
 
 
@@ -150,3 +150,22 @@ footer {
   background: #2a8b45;
 }
 
+#parkSearch {
+  position: absolute;
+  top:10px;
+  right:10px;
+  z-index:1000;
+  padding:6px;
+  width:200px;
+}
+#searchResults {
+  position:absolute;
+  top:40px;
+  right:10px;
+  z-index:1000;
+  background:white;
+  border:1px
+  solid #ccc;
+  width:200px;
+  display:none;
+}
