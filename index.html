@@ -19,9 +19,12 @@
 
   <div id="body-container">
     <div id="sidebar">
-      <h2>Additional Information</h2>
-        <p>There is 14 nationally protected areas in Texas including....</p>
-        <label>Buffer Radius: <span id="radiusValue">5</span> km</label>
+      <h2>Basic Information</h2>
+        <p>There is 14 nationally protected areas in Texas that make up around 1.2 million acres of land. These federally protected lands parks, historical monuments, 
+        wildlife preserves, national memorials, and recreation areas. While having so much land preserved, Texas ranks 38th of 50 states in terms of national park visits. 
+        The Purpose of this website is to inform people on the closest parks to them and provide resources to learn more.
+</h3></p>
+        <label><h2>Buffer Radius: </h2><span id="radiusValue">5</span> km</label>
         <input type="range" min="1" max="100" value="5" id="bufferSlider">
     </div>
     <input
@@ -36,10 +39,15 @@
 
   <div id="map"></div>
 </div>
-  <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
-
+  <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin="">
+  </script>
   <script src="basemap.js"></script>
   <script src="map2.js"></script>
+  
+  <footer style="text-align:center; padding:10px; font-size:14px; color:#555;">
+    © 2025 Emerson, Stephany, Abbie. All rights reserved.
+  </footer>
+    
 
 </body>
 </html>

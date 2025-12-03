@@ -1,72 +1,107 @@
+
 html, body {
   height: 100%;
   margin: 0;
-  padding:0;
-}
-
-#navbar {
-  background-color: #006837;
-  padding: 0px ;
-  height: 50px;
-  align-items: center;
+  padding: 0;
+  font-family: Arial, sans-serif;
   display: flex;
-  margin: 0;
-  width: 100%;
-}
-
-
-
-#navbar a{
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-}
-#navbar a:hover {
-  background-color: #004d2c;
+  flex-direction: column;
 }
 
 
 #header {
   background-color: #addd8e;
   text-align: center;
-  padding: 5px;
-  height: 80px;
+  padding: 4px 0;  
+  color: #004d2c;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-/* Sidebar */
-#sidebar {
-  position: absolute;
-  top: 130px;
-  left: 0;
-  width: 320px;
-  bottom: 0;
-  background-color:#ffffcc;
-  padding: 10px;
 
+
+
+#navbar {
+  background-color: #006837;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+#navbar a {
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+#navbar a:hover {
+  background-color: #004d2c;
+}
+
+
+#body-container {
+  flex: 1;                
+  display: flex;           
+  overflow: hidden;        
+}
+
+
+#sidebar {
+  width: 320px;
+  background-color: #ffffcc;
+  padding: 15px;
+  overflow-y: auto;
+  border-right: 2px solid #ddd;
+}
+
+#sidebar h2 {
+  margin-top: 0;
 }
 
 
 #map {
-  position: absolute;
-  top: 130px;
-  left: 320px;
-  right: 0;
-  bottom: 0;
-
+  flex: 1;
+  height: 100%;
 }
 
-#slider-container {
-       padding: 10px;
-        background: #f4f4f4;
-         text-align: center; }
 
-         /*  About Page Styling  */
+#parkSearch {
+  position: absolute;
+  top: 120px;
+  right: 20px;
+  z-index: 1500;
+  padding: 6px;
+  width: 220px;
+}
+#searchResults {
+  position: absolute;
+  top: 155px;
+  right: 20px;
+  z-index: 1500;
+  background: white;
+  border: 1px solid #ccc;
+  width: 220px;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+
+footer {
+  background: #e6e6e6;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  color: #444;
+  border-top: 1px solid #bbb;
+}
+
 
 .about-page {
   background-color: #e5f5f9;
-  font-family: Arial, sans-serif;
-  height: 100%;
-  margin: 0;
+  min-height: 100vh;
+  padding-bottom: 40px;
 }
 
 .about-container {
@@ -82,7 +117,6 @@ html, body {
 .about-container h1 {
   color: #31a354;
   text-align: center;
-  margin-top: 0;
 }
 
 .about-container h2 {
@@ -97,10 +131,7 @@ html, body {
 }
 
 .roles-list {
-  margin-top: 10px;
-  margin-bottom: 25px;
   font-size: 16px;
-  color: #333;
   padding-left: 20px;
 }
 
@@ -108,7 +139,7 @@ html, body {
   margin-bottom: 10px;
 }
 
- /* Back Button */
+
 .back-button {
   display: inline-block;
   padding: 10px 18px;
@@ -117,37 +148,8 @@ html, body {
   text-decoration: none;
   border-radius: 6px;
   font-weight: bold;
-  transition: 0.2s;
 }
-
 .back-button:hover {
   background: #2a8b45;
 }
 
-/* Header Link for About Page Nav */
-#about-link {
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  background: white;
-  color: #31a354;
-  padding: 6
-.widget {
-  position: absolute;
-  top: 80px;
-  right: 10px;
-  background: rgba(255,255,255,0.9);
-  padding: 10px;
-  border: 1px solid #ccc;
-  z-index: 1000;
-  width: 250px;
-  font-family: sans-serif;
-}
-.widget h2 {
-  font-size: 16px;
-  margin: 0 0 10px 0;
-}
-.widget select, .widget input {
-  width: 100%;
-  margin-bottom: 8px;
-}
