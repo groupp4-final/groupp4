@@ -1,32 +1,119 @@
 
 
 
-// Parks data
 const parks = [
-  { name: "Guadalupe Mountains NP", lat: 31.912, lng: -104.881, url: "https://www.nps.gov/gumo/index.htm" },
-  { name: "Big Bend NP", lat: 29.249, lng: -103.250, url: "https://www.nps.gov/bibe/index.htm" },
-  { name: "Chamizal NM", lat: 31.767, lng: -106.454, url: "https://www.nps.gov/cham/index.htm" },
-  { name: "Fort Davis NHS", lat: 30.598, lng: -103.895, url: "https://www.nps.gov/foda/index.htm" },
-  { name: "Rio Grande WSR", lat: 29.597, lng: -102.740, url: "https://www.nps.gov/rigr/index.htm" },
-  { name: "Amistad NRA", lat: 29.535, lng: -101.075, url: "https://www.nps.gov/amis/index.htm" },
-  { name: "San Antonio Missions NHP", lat: 29.329, lng: -98.453, url: "https://www.nps.gov/saan/index.htm" },
-  { name: "Lyndon B. Johnson NHP", lat: 30.242, lng: -98.608, url: "https://www.nps.gov/lyjo/index.htm" },
-  { name: "Waco Mammoth NM", lat: 31.606, lng: -97.175, url: "https://www.nps.gov/waco/index.htm" },
-  { name: "Alibates Flint Quarries NM", lat: 35.582, lng: -101.673, url: "https://www.nps.gov/alfl/index.htm" },
-  { name: "Lake Meredith NRA", lat: 35.643, lng: -101.586, url: "https://www.nps.gov/lamr/index.htm" },
-  { name: "Big Thicket NP", lat: 30.458, lng: -94.387, url: "https://www.nps.gov/bith/index.htm" },
-  { name: "Padre Island NS", lat: 27.085, lng: -97.384, url: "https://www.nps.gov/pais/index.htm" },
-  { name: "Palo Alto Battlefield NHP", lat: 26.016, lng: -97.479, url: "https://www.nps.gov/paal/index.htm" }
+  { 
+    name: "Guadalupe Mountains NP",
+    lat: 31.912, 
+    lng: -104.881,
+    url: "https://www.nps.gov/gumo/index.htm",
+    
+  },
+ { 
+  name: "Big Bend NP",
+  lat: 29.249, 
+  lng: -103.250,
+  url: "https://www.nps.gov/bibe/index.htm",
+  
+},
+
+  { 
+    name: "Chamizal NM",
+    lat: 31.767, 
+    lng: -106.454,
+    url: "https://www.nps.gov/cham/index.htm",
+    
+  },
+  { 
+    name: "Fort Davis NHS",
+    lat: 30.598, 
+    lng: -103.895,
+    url: "https://www.nps.gov/foda/index.htm",
+    
+  },
+  { 
+    name: "Rio Grande WSR",
+    lat: 29.597, 
+    lng: -102.740,
+    url: "https://www.nps.gov/rigr/index.htm",
+    
+  },
+  { 
+    name: "Amistad NRA",
+    lat: 29.535, 
+    lng: -101.075,
+    url: "https://www.nps.gov/amis/index.htm",
+    
+  },
+  { 
+    name: "San Antonio Missions NHP",
+    lat: 29.329, 
+    lng: -98.453,
+    url: "https://www.nps.gov/saan/index.htm",
+   
+  },
+  { 
+    name: "Lyndon B. Johnson NHP",
+    lat: 30.242, 
+    lng: -98.608,
+    url: "https://www.nps.gov/lyjo/index.htm",
+    
+  },
+  { 
+    name: "Waco Mammoth NM",
+    lat: 31.606, 
+    lng: -97.175,
+    url: "https://www.nps.gov/waco/index.htm",
+    
+  },
+  { 
+    name: "Alibates Flint Quarries NM",
+    lat: 35.582, 
+    lng: -101.673,
+    url: "https://www.nps.gov/alfl/index.htm",
+    
+  },
+  { 
+    name: "Lake Meredith NRA",
+    lat: 35.643, 
+    lng: -101.586,
+    url: "https://www.nps.gov/lamr/index.htm",
+   
+  },
+  { 
+    name: "Big Thicket NP",
+    lat: 30.458, 
+    lng: -94.387,
+    url: "https://www.nps.gov/bith/index.htm",
+   
+  },
+  { 
+    name: "Padre Island NS",
+    lat: 27.085, 
+    lng: -97.384,
+    url: "https://www.nps.gov/pais/index.htm",
+    
+  },
+  { 
+    name: "Palo Alto Battlefield NHP",
+    lat: 26.016, 
+    lng: -97.479,
+    url: "https://www.nps.gov/paal/index.htm",
+  }
 ];
 
-// Store buffer circles
+
 const bufferCircles = [];
 
-// Function to add marker + buffer
-function addPark(lat, lng, name, url, bufferKm){
-  const radius = bufferKm * 1000; // km to meters
+function addPark(lat, lng, name, url, img, bufferKm){
+  const radius = bufferKm * 1000; 
   L.marker([lat, lng]).addTo(map)
-    .bindPopup(`<strong>${name}</strong><br><a href="${url}" target="_blank">Website</a>`);
+    .bindPopup(`
+      <strong>${name}</strong><br>
+      <img src="${img}" style="width:200px; border-radius:6px; margin:5px 0;"><br>
+      <a href="${url}" target="_blank">Website</a>
+    `);
+
   const circle = L.circle([lat, lng], {
     color:"blue",
     fillColor:"blue",
@@ -34,13 +121,14 @@ function addPark(lat, lng, name, url, bufferKm){
     radius
   }).bindPopup(`<strong>${name} Buffer</strong><br>Radius: ${bufferKm} km`)
     .addTo(map);
-  bufferCircles.push(circle);
 }
 
-// Initial 5 km buffer
-parks.forEach(p => addPark(p.lat, p.lng, p.name, p.url, 5));
 
-// Slider functionality
+
+parks.forEach(p => addPark(p.lat, p.lng, p.name, p.url, p.img, 5));
+
+
+
 const slider = document.getElementById("bufferSlider");
 const radiusLabel = document.getElementById("radiusValue");
 
@@ -49,24 +137,25 @@ slider.addEventListener("input", function(){
   radiusLabel.textContent = radiusKm;
   bufferCircles.forEach(circle => circle.setRadius(radiusKm * 1000));
 });
-// ------------------------------
-// SEARCH QUERY FUNCTIONALITY
-// ------------------------------
+
 const searchInput = document.getElementById("parkSearch");
 const resultsBox = document.getElementById("searchResults");
 
-// Save marker references
+
 const parkMarkers = {};
 
 parks.forEach(p => {
   const marker = L.marker([p.lat, p.lng]).addTo(map)
-    .bindPopup(`<strong>${p.name}</strong><br><a href="${p.url}" target="_blank">Website</a>`);
+    .bindPopup(`
+      <strong>${p.name}</strong><br>
+      <img src="${p.img}" style="width:200px; border-radius:6px; margin:5px 0;"><br>
+      <a href="${p.url}" target="_blank">Website</a>
+    `);
 
-  // store markers for search/zoom use
   parkMarkers[p.name] = marker;
 });
 
-// Search event
+
 searchInput.addEventListener("input", function () {
   const text = this.value.toLowerCase();
   resultsBox.innerHTML = "";
@@ -76,7 +165,7 @@ searchInput.addEventListener("input", function () {
     return;
   }
 
-  // Find matches
+
   const matches = parks.filter(p => p.name.toLowerCase().includes(text));
 
   if (matches.length === 0) {
