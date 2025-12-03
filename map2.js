@@ -75,7 +75,7 @@ div.textContent = p.name;
 div.style.padding = "5px";
 div.style.cursor = "pointer";
 
-```
+
 div.addEventListener("click", () => {
   const marker = parkMarkers[p.name];
   map.setView([p.lat, p.lng], 11);
@@ -85,7 +85,7 @@ div.addEventListener("click", () => {
 });
 
 resultsBox.appendChild(div);
-```
+
 
 });
 });
