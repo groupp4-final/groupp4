@@ -1,4 +1,6 @@
-const map = L.map("map").setView([31.0, -99.0], 6);
+// basemap.js
+window.map = L.map("map").setView([31.0, -99.0], 6);
+
 // Basemaps
 const basemaps = {
   "OpenStreetMap": L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }),

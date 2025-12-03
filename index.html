@@ -23,6 +23,25 @@
         <p>There is 14 nationally protected areas in Texas including....</p>
         <label>Buffer Radius: <span id="radiusValue">5</span> km</label>
         <input type="range" min="1" max="100" value="5" id="bufferSlider">
+    <hr>
+      <div id="query">
+        <h2>State Parks</h2>
+        <label for="attSelect">Attribute:</label>
+        <select id="attSelect">
+
+  <option value="P_NAME">Park Name</option>
+  <option value="CODE">Code</option>
+  <option value="NAME">Full Name</option>
+  <option value="CLASS">Class</option>
+  <option value="TYPE">Type</option>
+  <option value="County1">County</option>
+        </select>
+        <label for="valSelect">Value:</label>
+        <input type="text" id="valSelect" placeholder="e.g., Guadalupe">
+          <br><br>
+          <button id="doBtn">Do Query</button>
+          <p><span id="printResults"></span></p>
+        </div>
     </div>
     <input
     type="text"
@@ -37,6 +56,7 @@
   <div id="map"></div>
 </div>
   <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
+
   <script src="basemap.js"></script>
   <script src="map2.js"></script>
 

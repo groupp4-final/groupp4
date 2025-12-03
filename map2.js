@@ -1,3 +1,6 @@
+
+
+
 // Parks data
 const parks = [
   { name: "Guadalupe Mountains NP", lat: 31.912, lng: -104.881, url: "https://www.nps.gov/gumo/index.htm" },
@@ -114,3 +117,71 @@ npsPolygons.forEach(site => {
 
 
 
+
+//npsPolygons.forEach(site => {
+//  const polygon = L.polygon(site.coords, {
+//    color: "red",
+//    weight: 2,
+//    fillOpacity: 1
+//  }).addTo(map);
+
+//  polygon.bindPopup(site.name);
+//});
+
+
+
+fetch("https://raw.githubusercontent.com/groupp4-final/groupp4/main/TPWD_StateParksBoundary.geojson")
+
+  .then(response => response.json())
+  .then(data => {
+
+
+    function parkStyle(feature) {
+      return {
+        color: "#1e90ff",
+        weight: 2,
+        fillColor: "#87cefa",
+        fillOpacity: 0.35
+      };
+    }
+
+    function highlightFeature(e) {
+      var layer = e.target;
+      layer.setStyle({
+        weight: 3,
+        color: "#000",
+        fillOpacity: 0.5
+      });
+    }
+
+    function resetHighlight(e) {
+      parksLayer.resetStyle(e.target);
+    }
+
+
+    function onEachPark(feature, layer) {
+      layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight
+      });
+
+      let name = feature.properties.PARK_NAME ||
+                 feature.properties.NAME ||
+                 "Unnamed Park";
+
+      layer.bindPopup(`<strong>${name}</strong>`);
+    }
+
+
+    parksLayer = L.geoJSON(data, {
+      style: parkStyle,
+      onEachFeature: onEachPark
+    }).addTo(map);
+
+
+    L.control.layers(null, {
+      "Texas State Parks (Boundaries)": parksLayer
+    }).addTo(map);
+
+  })
+  .catch(err => console.error("Failed to load TPWD State Parks Boundary GeoJSON:", err));

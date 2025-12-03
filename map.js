@@ -1,4 +1,5 @@
 //Center to Texas
+/*
 var mymap = L.map('map').setView([31.9686, -99.9018], 6);
 //add basemap
 L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -91,3 +92,4 @@ var wacoMammothNM = L.marker([31.6067336, -97.1758392]).addTo(mymap)
             <img src="groupp4/images/Mammoth.jpg" width= "250" height= "250" />
             <a href="https://www.nps.gov/waco/index.htm" target="_blank"> Website </a>
         `);
+  */
