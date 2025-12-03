@@ -1,7 +1,7 @@
 
 window.map = L.map("map").setView([31.0, -99.0], 6);
 
-
+//links tile layers from open sources for different option basemaps
 const basemaps = {
   "OpenStreetMap": L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }),
   "Topographic": L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", { maxZoom: 17 }),
@@ -13,10 +13,7 @@ const basemaps = {
   "USGS Topo": L.tileLayer("https://basemap.nationalmap.gov/ArcGIS/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16 }),
 };
 
-
-
-
 basemaps["OpenStreetMap"].addTo(map);
 
-
+//creates a clickable box for basemap selections
 L.control.layers(basemaps, null, { collapsed: false }).addTo(map);
