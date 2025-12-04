@@ -5,7 +5,7 @@ const parkMarkers = {};
 
 //All 14 areas with latitude/longitude, official website,name, and images linked
 const parks = [
-{ name: "Guadalupe Mountains NP", lat: 31.912, lng: -104.881, url: "[https://www.nps.gov/gumo/index.htm](https://www.nps.gov/gumo/index.htm)", },
+{ name: "Guadalupe Mountains NP", lat: 31.912, lng: -104.881, url: "[https://www.nps.gov/gumo/index.htm](https://www.nps.gov/gumo/index.htm)",},
 { name: "Big Bend NP", lat: 29.249, lng: -103.250, url: "[https://www.nps.gov/bibe/index.htm](https://www.nps.gov/bibe/index.htm)",},
 { name: "Chamizal NM", lat: 31.767, lng: -106.454, url: "[https://www.nps.gov/cham/index.htm](https://www.nps.gov/cham/index.htm)",},
 { name: "Fort Davis NHS", lat: 30.598, lng: -103.895, url: "[https://www.nps.gov/foda/index.htm](https://www.nps.gov/foda/index.htm)", },
